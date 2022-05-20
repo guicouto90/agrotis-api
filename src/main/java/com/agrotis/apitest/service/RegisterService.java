@@ -1,7 +1,11 @@
 package com.agrotis.apitest.service;
 
 import java.util.List;
+// import java.util.Objects;
 
+// import com.agrotis.apitest.exceptions.ResourceNotFoundException;
+import com.agrotis.apitest.model.Laboratory;
+import com.agrotis.apitest.model.Property;
 import com.agrotis.apitest.model.Register;
 import com.agrotis.apitest.repository.LaboratoryRepository;
 import com.agrotis.apitest.repository.PropertyRepository;
@@ -16,24 +20,25 @@ public class RegisterService {
   @Autowired
   private RegisterRepository registerRepository;
 
+  @Autowired
   private PropertyRepository propertyRepository;
 
+  @Autowired
   private LaboratoryRepository laboratoryRepository;
   
   public Register addRegister(Register register) {
-    try {
-      this.propertyRepository
-        .findById(register.getPropertyInfo().getId())
-        .orElseThrow(() -> new IllegalArgumentException("Property not found"));
+    Property property = this.propertyRepository
+      .findById(register.getPropertyInfo().getId())
+      .orElseThrow(() -> new IllegalArgumentException("Property not found"));
 
-      this.laboratoryRepository
-        .findById(register.getLaboratory().getId())
-        .orElseThrow(() -> new IllegalArgumentException("Laboratory not found"));
+    Laboratory lab = this.laboratoryRepository
+      .findById(register.getLaboratory().getId())
+      .orElseThrow(() -> new IllegalArgumentException("Laboratory not found"));
 
-      return this.registerRepository.save(register);
-    } catch (Exception e) {
-      throw e;
-    }
+    register.setPropertyInfo(property);
+    register.setLaboratory(lab);
+
+    return this.registerRepository.save(register);
   }
 
   public List<Register> findAllRegisters() {

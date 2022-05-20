@@ -6,6 +6,8 @@ import com.agrotis.apitest.model.Laboratory;
 import com.agrotis.apitest.service.LaboratoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,27 +25,32 @@ public class LaboratoryController {
   private LaboratoryService laboratoryService;
 
   @PostMapping
-  public Laboratory newLab(@RequestBody Laboratory laboratory) {
-    return this.laboratoryService.addLaboratory(laboratory);
+  public ResponseEntity<?> newLab(@RequestBody Laboratory laboratory) {
+    Laboratory newLaboratory = this.laboratoryService.addLaboratory(laboratory);
+    return new ResponseEntity<>(newLaboratory, HttpStatus.CREATED);
   }
 
   @GetMapping
-  public List<Laboratory> getAllLabs() {
-    return this.laboratoryService.findLaboratories();
+  public ResponseEntity<?> getAllLabs() {
+    List<Laboratory> laboratories = this.laboratoryService.findLaboratories();
+    return new ResponseEntity<>(laboratories, HttpStatus.OK);
   } 
 
   @GetMapping("/{labId}")
-  public Laboratory getAllLabs(@PathVariable String labId) {
-    return this.laboratoryService.findLaboratoryById(labId);
+  public ResponseEntity<?> getAllLabs(@PathVariable String labId) {
+    Laboratory lab = this.laboratoryService.findLaboratoryById(labId);
+    return new ResponseEntity<>(lab, HttpStatus.OK);
   }
 
   @PutMapping("{labId}")
-  public Laboratory editPropertyById(@PathVariable String labId, @RequestBody Laboratory lab) {
-    return this.laboratoryService.updateLaboratoryById(labId, lab);
+  public ResponseEntity<?> editPropertyById(@PathVariable String labId, @RequestBody Laboratory lab) {
+    Laboratory labEdited = this.laboratoryService.updateLaboratoryById(labId, lab);
+    return new ResponseEntity<>(labEdited, HttpStatus.ACCEPTED);
   }
 
   @DeleteMapping("/{labId}")
-  public void erasePropertyById(@PathVariable String labId) {
+  public ResponseEntity<?> erasePropertyById(@PathVariable String labId) {
     this.laboratoryService.deleteLaboratoryById(labId);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }

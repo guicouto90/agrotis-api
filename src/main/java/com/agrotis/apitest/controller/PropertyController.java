@@ -6,6 +6,8 @@ import com.agrotis.apitest.model.Property;
 import com.agrotis.apitest.service.PropertyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,27 +25,32 @@ public class PropertyController {
   private PropertyService propertyService;
 
   @GetMapping
-  public List<Property> getAllProperties() {
-    return this.propertyService.findAllProperties();
+  public ResponseEntity<?> getAllProperties() {
+    List<Property> property = this.propertyService.findAllProperties();
+    return new ResponseEntity<>(property, HttpStatus.OK);
   }
 
   @GetMapping("/{propertyId}")
-  public Property getPropertyById(@PathVariable String propertyId) {
-    return propertyService.findPropertyById(propertyId);
+  public ResponseEntity<?> getPropertyById(@PathVariable String propertyId) {
+    Property property = propertyService.findPropertyById(propertyId);
+    return new ResponseEntity<>(property, HttpStatus.OK);
   }
 
   @PostMapping
-  public Property newProperty(@RequestBody Property property) {
-    return this.propertyService.addProperty(property);
+  public ResponseEntity<?> newProperty(@RequestBody Property property) {
+    Property newProperty = this.propertyService.addProperty(property);
+    return new ResponseEntity<>(newProperty, HttpStatus.CREATED);
   }
 
   @PutMapping("/{propertyId}")
-  public Property editPropertyById(@PathVariable String propertyId, @RequestBody Property property) {
-    return this.propertyService.updatePropertyById(propertyId, property);
+  public ResponseEntity<?> editPropertyById(@PathVariable String propertyId, @RequestBody Property property) {
+    Property editedProperty = this.propertyService.updatePropertyById(propertyId, property);
+    return new ResponseEntity<>(editedProperty, HttpStatus.ACCEPTED);
   }
 
   @DeleteMapping("/{propertyId}")
-  public void erasePropertyById(@PathVariable String propertyId) {
+  public ResponseEntity<?> erasePropertyById(@PathVariable String propertyId) {
     this.propertyService.deletePropertyById(propertyId);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }

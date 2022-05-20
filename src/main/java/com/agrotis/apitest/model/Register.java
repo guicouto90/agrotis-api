@@ -2,6 +2,7 @@ package com.agrotis.apitest.model;
 
 import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -13,7 +14,11 @@ public class Register {
   private String name;
   private LocalDateTime initialDate;
   private LocalDateTime finalDate;
+
+  @DBRef
   private Property propertyInfo;
+
+  @DBRef
   private Laboratory laboratory;
   private String note;
 

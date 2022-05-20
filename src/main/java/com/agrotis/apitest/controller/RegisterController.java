@@ -6,6 +6,8 @@ import com.agrotis.apitest.model.Register;
 import com.agrotis.apitest.service.RegisterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,22 +24,26 @@ public class RegisterController {
   private RegisterService registerService;
 
   @GetMapping
-  public List<Register> getAllRegisters() {
-    return this.registerService.findAllRegisters();
+  public ResponseEntity<?> getAllRegisters() {
+    List<Register> registers = this.registerService.findAllRegisters();
+    return new ResponseEntity<>(registers, HttpStatus.OK);
   }
 
   @GetMapping("/{registerId}")
-  public Register getRegisterById(@PathVariable String registerId) {
-    return registerService.findRegisterById(registerId);
+  public ResponseEntity<?> getRegisterById(@PathVariable String registerId) {
+    Register register = registerService.findRegisterById(registerId);
+    return new ResponseEntity<>(register, HttpStatus.OK);
   }
 
   @PostMapping
-  public Register newRegister(@RequestBody Register register) {
-    return this.registerService.addRegister(register);
+  public ResponseEntity<?> newRegister(@RequestBody Register register) {
+    Register newRegister = this.registerService.addRegister(register);
+    return new ResponseEntity<>(newRegister, HttpStatus.CREATED);
   }
 
   @DeleteMapping("/{registerId}")
-  public void eraseRegisterById(@PathVariable String registerId) {
+  public ResponseEntity<?> eraseRegisterById(@PathVariable String registerId) {
     this.registerService.deleteRegisterById(registerId);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }
