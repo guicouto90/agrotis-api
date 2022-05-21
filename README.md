@@ -164,5 +164,16 @@ Exemplo de retorno quando tem problema com o propertyInfo ou laboratory:
 
 
 ### Próximos passos:
-- Mais testes unitários;
-- Melhor tratamento com as exceptions.
+- Mais testes;
+- Melhor tratamento com exceções.
+
+<div align="center">
+
+    Agradeço muito a oportunidade de estar participando no processo seletivo da Agrotis.
+    Essa foi a primeira API em Java que desenvolvi, fico muito contente pelo tanto que aprendi nesses dois dias de projeto.
+
+    Qualquer dúvida ou sugestão me contate por:
+    - Linkedin: <a src="https://www.linkedin.com/in/guicouto90/">
+    - Email: gui.couto90@yahoo.com.br
+    
+</div>
