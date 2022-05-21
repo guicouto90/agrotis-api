@@ -30,9 +30,9 @@ Link do protótipo (https://www.figma.com/proto/PXi5PcZWks8Z7veqA8WU30/Teste-Fro
     - POST e GET: `/register`
     - GET, PUT e DELETE: `/register/{registerId}` 
 
-### Rotas:
+## Rotas:
 
-#### `/property`
+### `/property`
 #### Método POST:
 - API permite que seja criado uma nova Property através do método POST no endpoint `/property` passando no body um json no formato:
 ```json
@@ -76,7 +76,7 @@ Exemplo de retorno quando tem problema com o name e cnpj:
 <img src="./images_agrotis_api/Property/property_edit.jpg" width="400px">
 
 
-#### `/laboratory`
+### `/laboratory`
 #### Método POST:
 - API permite que seja criado um novo laboratório através do método POST no endpoint `/laboratory` passando no body um json no formato:
 ```json
@@ -114,7 +114,7 @@ Exemplo de retorno quando tem problema com o name:
 <img src="./images_agrotis_api/Laboratory/lab_deleted.jpg" width="400px">
 
 
-#### `/register`
+### `/register`
 #### Método POST:
 - API permite que seja criado um novo registro através do método POST no endpoint `/register` passando no body um json no formato:
 ```json
@@ -163,6 +163,6 @@ Exemplo de retorno quando tem problema com o propertyInfo ou laboratory:
 <img src="./images_agrotis_api/Register/register_edit.jpg" width="400px">
 
 
-#### Próximos passos:
+### Próximos passos:
 - Mais testes unitários;
 - Melhor tratamento com as exceptions.
