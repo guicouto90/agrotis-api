@@ -1,6 +1,7 @@
 package com.agrotis.apitest.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,8 +13,8 @@ public class Register {
   private String id;
 
   private String name;
-  private LocalDateTime initialDate;
-  private LocalDateTime finalDate;
+  private LocalDate initialDate;
+  private LocalDate finalDate;
 
   @DBRef
   private Property propertyInfo;
@@ -22,12 +23,12 @@ public class Register {
   private Laboratory laboratory;
   private String note;
 
-  public Register(String id, String name, Property propertyInfo, Laboratory laboratory, String note) {
+  public Register(String id, String name, LocalDate initialDate, LocalDate finalDate, Property propertyInfo, Laboratory laboratory, String note) {
     super();
     this.id = id;
     this.setName(name);
-    this.initialDate = LocalDateTime.now();
-    this.finalDate = LocalDateTime.now();
+    this.setInitialDate(initialDate);
+    this.setFinalDate(finalDate);
     this.setNote(note);
     this.setLaboratory(laboratory);
     this.setPropertyInfo(propertyInfo);
@@ -53,19 +54,19 @@ public class Register {
     return note;
   }
 
-  public void setInitialDate(LocalDateTime date) {
+  public void setInitialDate(LocalDate date) {
     this.initialDate = date;
   }
 
-  public LocalDateTime getInitialDate() {
+  public LocalDate getInitialDate() {
     return initialDate;
   }
 
-  public void setFinalDate(LocalDateTime date) {
+  public void setFinalDate(LocalDate date) {
     this.finalDate = date;
   }
 
-  public LocalDateTime getFinalDate() {
+  public LocalDate getFinalDate() {
     return finalDate;
   }
 

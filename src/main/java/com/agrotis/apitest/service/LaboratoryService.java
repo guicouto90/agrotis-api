@@ -2,6 +2,8 @@ package com.agrotis.apitest.service;
 
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
+
 import com.agrotis.apitest.model.Laboratory;
 import com.agrotis.apitest.repository.LaboratoryRepository;
 
@@ -14,8 +16,18 @@ public class LaboratoryService {
   @Autowired
   private LaboratoryRepository laboratoryRepository;
 
+  public void verifyName(String name) {
+    if(name.length() <= 3 || name == null) {
+      throw new StringIndexOutOfBoundsException("Name field invalid. It must has at least 3 length");
+    }
+    Laboratory lab = this.laboratoryRepository.findItemByName(name);
+    if(lab != null) {
+      throw new EntityExistsException("Laboratory name already registered");
+    }
+  }
+
   public Laboratory addLaboratory(Laboratory lab) {
-    System.out.println(lab);
+    this.verifyName(lab.getName());
     return this.laboratoryRepository.save(lab);
   }
 
@@ -35,6 +47,7 @@ public class LaboratoryService {
 
   public Laboratory updateLaboratoryById(String id, Laboratory lab) {
     Laboratory editedLab = findLaboratoryById(id);
+    this.verifyName(lab.getName());
     editedLab.setName(lab.getName());
     return this.laboratoryRepository.save(editedLab);
   }

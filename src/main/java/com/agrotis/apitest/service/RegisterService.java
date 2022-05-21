@@ -1,9 +1,11 @@
 package com.agrotis.apitest.service;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-// import java.util.Objects;
+import java.util.regex.Pattern;
 
-// import com.agrotis.apitest.exceptions.ResourceNotFoundException;
 import com.agrotis.apitest.model.Laboratory;
 import com.agrotis.apitest.model.Property;
 import com.agrotis.apitest.model.Register;
@@ -25,8 +27,24 @@ public class RegisterService {
 
   @Autowired
   private LaboratoryRepository laboratoryRepository;
+
+  public void verifyName(String name) {
+    if(name.length() <= 3 || name == null || Pattern.matches("[0-9]+", name) == true) {
+      throw new StringIndexOutOfBoundsException("Name field invalid. It must has at least 3 length and cannot be a number");
+    }
+  }
+
+  public void verifyDate(LocalDate date) {
+    DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    String dateString = datePattern.format(date);
+    if(Pattern.matches("\\d{4}-\\d{2}-\\d{2}", dateString) == false) {
+      throw new DateTimeException("Date Format Invalid, it must be YYYY-MM-DD");
+    }
+  }
   
   public Register addRegister(Register register) {
+    this.verifyDate(register.getInitialDate());
+    this.verifyDate(register.getFinalDate());
     Property property = this.propertyRepository
       .findById(register.getPropertyInfo().getId())
       .orElseThrow(() -> new IllegalArgumentException("Property not found"));
@@ -34,6 +52,8 @@ public class RegisterService {
     Laboratory lab = this.laboratoryRepository
       .findById(register.getLaboratory().getId())
       .orElseThrow(() -> new IllegalArgumentException("Laboratory not found"));
+
+    this.verifyName(register.getName());
 
     register.setPropertyInfo(property);
     register.setLaboratory(lab);
@@ -54,4 +74,28 @@ public class RegisterService {
   public void deleteRegisterById(String id) {
     this.registerRepository.deleteById(id);
   }
+
+  public Register updateRegisterById(String id, Register register) {
+    Register editedRegister = this.findRegisterById(id);
+
+    Property property = this.propertyRepository
+      .findById(register.getPropertyInfo().getId())
+      .orElseThrow(() -> new IllegalArgumentException("Property not found"));
+
+    Laboratory lab = this.laboratoryRepository
+      .findById(register.getLaboratory().getId())
+      .orElseThrow(() -> new IllegalArgumentException("Laboratory not found"));
+    
+    editedRegister.setPropertyInfo(property);
+    editedRegister.setLaboratory(lab);
+
+    this.verifyName(register.getName());
+    editedRegister.setName(register.getName());
+    editedRegister.setNote(register.getNote());
+    editedRegister.setInitialDate(register.getInitialDate());
+    editedRegister.setFinalDate(register.getFinalDate());
+
+    return this.registerRepository.save(editedRegister);
+  }
+
 }
