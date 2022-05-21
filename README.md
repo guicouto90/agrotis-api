@@ -42,38 +42,38 @@ Link do protótipo (https://www.figma.com/proto/PXi5PcZWks8Z7veqA8WU30/Teste-Fro
     }
 ```
 - Exemplo de retorno quando é criado com sucesso:
-<img src="./images_agrotis_api/Property/property_success.jpg" width="400px">
+<img src="./images_agrotis_api/Property/property_success.jpg" width="700px">
 
 Exemplo de retorno quando tem problema com o name e cnpj:
 - Problema com conflito no nome:
-<img src="./images_agrotis_api/Property/property_name_conflict.jpg" width="400px">
+<img src="./images_agrotis_api/Property/property_name_conflict.jpg" width="700px">
 
 - Problema com conflito no cnpj:
-<img src="./images_agrotis_api/Property/property_cnpj_length.jpg" width="400px">
+<img src="./images_agrotis_api/Property/property_cnpj_length.jpg" width="700px">
 
 - Problema com cnpj inválido:
-<img src="./images_agrotis_api/Property/property_cnpj_conflict.jpg" width="400px">
+<img src="./images_agrotis_api/Property/property_cnpj_conflict.jpg" width="700px">
 
 #### Método GET:
 - API permite que seja possivel listar todas as propriedades cadastradas através dp método GET no endpoint `/property`, e listar uma propriedade especifica com o endpoint `/property/{propertyId}`, passando um propertyId de uma propriedade já cadastrada.
 - Exemplo retorno listando todas as propriedades cadastradas:
-<img src="./images_agrotis_api/Property/property_get_all.jpg" width="400px">
+<img src="./images_agrotis_api/Property/property_get_all.jpg" width="700px">
 
 - Exemplo retorno listando uma propriedade especifica:
-<img src="./images_agrotis_api/Property/get_by_id.jpg" width="400px">
+<img src="./images_agrotis_api/Property/get_by_id.jpg" width="700px">
 
 - Exemplo de retorno quando não se encontra uma propriedade especifica:
-<img src="./images_agrotis_api/Property/not_found.jpg" width="400px">
+<img src="./images_agrotis_api/Property/not_found.jpg" width="700px">
 
 #### Método DELETE:
 - A API permite deletar uma propriedade especifica com o endpoint `/property/{propertyId}`, passando um propertyId de uma propriedade já cadastrada.
 - Exemplo retorno listando todas as propriedades cadastradas:
-<img src="./images_agrotis_api/Property/property_delete.jpg" width="400px">
+<img src="./images_agrotis_api/Property/property_delete.jpg" width="700px">
 
 #### Método PUT:
 - A API permite editar uma propriedade especifica com o endpoint `/property/{propertyId}`, passando um propertyId de uma propriedade já cadastrada. E passando um body no mesmo padrão do método POST.
 - Exemplo retorno listando todas as propriedades cadastradas:
-<img src="./images_agrotis_api/Property/property_edit.jpg" width="400px">
+<img src="./images_agrotis_api/Property/property_edit.jpg" width="700px">
 
 
 ### `/laboratory`
@@ -85,33 +85,33 @@ Exemplo de retorno quando tem problema com o name e cnpj:
     }
 ```
 - Exemplo de retorno quando é criado com sucesso:
-<img src="./images_agrotis_api/Laboratory/lab_post_ok.jpg" width="400px">
+<img src="./images_agrotis_api/Laboratory/lab_post_ok.jpg" width="700px">
 
 Exemplo de retorno quando tem problema com o name:
 - Problema com conflito no nome:
-<img src="./images_agrotis_api/Laboratory/lab_duplicated.jpg" width="400px">
+<img src="./images_agrotis_api/Laboratory/lab_duplicated.jpg" width="700px">
 
 
 #### Método GET:
 - API permite que seja possivel listar todos os laboratorios cadastradas através dp método GET no endpoint `/laboratory`, e listar um laboratorio especifico com o endpoint `/laboratory/{labId}`, passando um labId de uma laboratorio já cadastrado.
 - Exemplo retorno listando todos os laboratorios cadastrados:
-<img src="./images_agrotis_api/Laboratory/lab_get_all.jpg" width="400px">
+<img src="./images_agrotis_api/Laboratory/lab_get_all.jpg" width="700px">
 
 - Exemplo retorno listando um laboratorio especifico:
-<img src="./images_agrotis_api/Laboratory/lab_get_by_id.jpg" width="400px">
+<img src="./images_agrotis_api/Laboratory/lab_get_by_id.jpg" width="700px">
 
 - Exemplo de retorno quando não se encontra um laboratorio especifico:
-<img src="./images_agrotis_api/Laboratory/lab_not_found.jpg" width="400px">
+<img src="./images_agrotis_api/Laboratory/lab_not_found.jpg" width="700px">
 
 #### Método DELETE:
 - A API permite deletar um laboratorio especifico com o endpoint `/laboratory/{labId}`, passando um labId de um laboratorio ja cadastrado.
 - Exemplo retorno listando todas as propriedades cadastradas:
-<img src="./images_agrotis_api/Laboratory/lab_edited.jpg" width="400px">
+<img src="./images_agrotis_api/Laboratory/lab_edited.jpg" width="700px">
 
 #### Método PUT:
 - A API permite editar um laboratorio especifico com o endpoint `/laboraotry/{labId}`, passando um labId de um laboratorio ja cadastrado. E passando um body no mesmo padrão do método POST.
 - Exemplo retorno listando todas as propriedades cadastradas:
-<img src="./images_agrotis_api/Laboratory/lab_deleted.jpg" width="400px">
+<img src="./images_agrotis_api/Laboratory/lab_deleted.jpg" width="700px">
 
 
 ### `/register`
@@ -132,35 +132,35 @@ Exemplo de retorno quando tem problema com o name:
     }
 ```
 - Exemplo de retorno quando é criado com sucesso:
-<img src="./images_agrotis_api/Register/register_success.jpg" width="400px">
+<img src="./images_agrotis_api/Register/register_success.jpg" width="700px">
 
 Exemplo de retorno quando tem problema com o propertyInfo ou laboratory:
 - Problema com conflito no propertyInfo:
-<img src="./images_agrotis_api/Register/register_property_not_found.jpg" width="400px">
+<img src="./images_agrotis_api/Register/register_property_not_found.jpg" width="700px">
 - Problema com conflito no laboratory:
-<img src="./images_agrotis_api/Register/register_lab_not_found.jpg" width="400px">
+<img src="./images_agrotis_api/Register/register_lab_not_found.jpg" width="700px">
 
 
 #### Método GET:
 - API permite que seja possivel listar todos os registros cadastradas através dp método GET no endpoint `/register`, e listar um registro especifico com o endpoint `/register/{registerId}`, passando um registerId de uma registro já cadastrado.
 - Exemplo retorno listando todos os registros cadastrados:
-<img src="./images_agrotis_api/Register/register_get_ok.jpg" width="400px">
+<img src="./images_agrotis_api/Register/register_get_ok.jpg" width="700px">
 
 - Exemplo retorno listando um registro especifico:
-<img src="./images_agrotis_api/Register/register_get_by_id.jpg" width="400px">
+<img src="./images_agrotis_api/Register/register_get_by_id.jpg" width="700px">
 
 - Exemplo de retorno quando não se encontra um registro especifico:
-<img src="./images_agrotis_api/Register/register_not_found.jpg" width="400px">
+<img src="./images_agrotis_api/Register/register_not_found.jpg" width="700px">
 
 #### Método DELETE:
 - A API permite deletar um registro especifico com o endpoint `/register/{registerId}`, passando um registerId de um registro ja cadastrado.
 - Exemplo retorno listando todas as propriedades cadastradas:
-<img src="./images_agrotis_api/Register/register_delete.jpg" width="400px">
+<img src="./images_agrotis_api/Register/register_delete.jpg" width="700px">
 
 #### Método PUT:
 - A API permite editar um registro especifico com o endpoint `/laboraotry/{registerId}`, passando um registerId de um registro ja cadastrado. E passando um body no mesmo padrão do método POST.
 - Exemplo retorno listando todas as propriedades cadastradas:
-<img src="./images_agrotis_api/Register/register_edit.jpg" width="400px">
+<img src="./images_agrotis_api/Register/register_edit.jpg" width="700px">
 
 
 ### Próximos passos:
